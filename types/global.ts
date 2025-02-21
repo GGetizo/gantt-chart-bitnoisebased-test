@@ -1,5 +1,5 @@
 import { LocaleType } from "@/context/LocaleProvider/types";
-import { ColorType } from "@/styles";
+import { ColorType } from "@/app/styles";
 
 export const allZoomLevel = [0, 1, 2] as const;
 
@@ -77,7 +77,6 @@ export type PaginatedSchedulerRow = {
 };
 
 export type SchedulerRowLabel = {
-  icon: string;
   title: string;
   subtitle: string;
 };

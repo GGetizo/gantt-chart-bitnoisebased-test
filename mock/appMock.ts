@@ -24,19 +24,14 @@ const getRandomDates = (year: number) => {
   return { startDate, endDate };
 };
 
-export const generateProjects = (
+export const generateTasksForPhase = (
   years: number,
-  maxProjectsPerYear: number,
+  maxTasksPerDay: number,
   amountOfDscWords = 5,
-  title: string
+  phaseName: string
 ): SchedulerProjectData[] => {
-  const startYear = dayjs()
-    .subtract(Math.floor(years / 2), "years")
-    .get("year");
-
-  const endYear = dayjs()
-    .add(Math.floor(years / 2), "years")
-    .get("year");
+  const startYear = dayjs().subtract(Math.floor(years / 2), "years").get("year");
+  const endYear = dayjs().add(Math.floor(years / 2), "years").get("year");
 
   const data = [];
   const bgColor = `rgb(${Math.ceil(Math.random() * 255)},${Math.ceil(
@@ -44,17 +39,17 @@ export const generateProjects = (
   )},${Math.ceil(Math.random() * 200)})`;
 
   for (let yearIndex = startYear; yearIndex <= endYear; yearIndex++) {
-    const projectsPerYear = Math.ceil(Math.random() * maxProjectsPerYear);
+    const tasksPerYear = Math.ceil(Math.random() * maxTasksPerDay);
 
-    for (let projectIndex = 0; projectIndex < projectsPerYear; projectIndex++) {
+    for (let taskIndex = 0; taskIndex < tasksPerYear; taskIndex++) {
       const { startDate, endDate } = getRandomDates(yearIndex);
       data.push({
         id: faker.string.uuid(),
         startDate,
         endDate,
         occupancy: Math.ceil(Math.random() * secondsInWorkDay),
-        title,
-        subtitle: getRandomWords(),
+        title: getRandomWords(3), // Task Name
+        subtitle: `Phase: ${phaseName}`, // Phase Name
         description: getRandomWords(amountOfDscWords),
         bgColor
       });
@@ -64,31 +59,38 @@ export const generateProjects = (
 };
 
 export const createMockData = (
-  amountOfPeople: number,
+  amountOfProjects: number, // Now represents projects, not people
   years: number,
-  maxProjectsPerYear: number,
+  maxTasksPerDay: number, // Controls number of tasks per phase
   amountOfDscWords = 5
 ): SchedulerData => {
   const schedulerData: SchedulerData = [];
-  for (let i = 0; i < amountOfPeople; i++) {
-    const title = getRandomWords(2);
-    const data: SchedulerProjectData[] = generateProjects(
-      years,
-      maxProjectsPerYear,
-      amountOfDscWords,
-      title
-    );
 
-    const item = {
-      id: faker.string.uuid(),
-      label: {
-        icon: "https://picsum.photos/24",
-        title,
-        subtitle: getRandomWords()
-      },
-      data
-    };
-    schedulerData.push(item);
+  const phaseNames = ["Planning", "Development", "Testing"];
+
+  for (let i = 0; i < amountOfProjects; i++) {
+    const projectName = `Project ${i + 1}`;
+    
+    for (const phase of phaseNames) {
+      const data: SchedulerProjectData[] = generateTasksForPhase(
+        years,
+        maxTasksPerDay,
+        amountOfDscWords,
+        phase
+      );
+
+      const item = {
+        id: faker.string.uuid(),
+        projectID: projectName,
+        label: {
+          title: `${phase}`,
+          subtitle: `Task for ${phase}`
+        },
+        data
+      };
+
+      schedulerData.push(item);
+    }
   }
   return schedulerData;
 };

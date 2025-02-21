@@ -1,5 +1,4 @@
 import { FC } from "react";
-//import { Icon } from "@/components/shared";
 import {
   StyledImageWrapper,
   StyledInnerWrapper,

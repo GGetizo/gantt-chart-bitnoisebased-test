@@ -5,6 +5,12 @@ import PaginationButton from "../PaginationButton/PaginationButton";
 import { StyledInput, StyledInputWrapper, StyledLeftColumnHeader, StyledWrapper } from "./styles";
 import { LeftColumnProps } from "./types";
 import LeftColumnItem from "./LeftColumnItem/LeftColumnItem";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
 
 const LeftColumn: FC<LeftColumnProps> = ({
   data,
@@ -44,15 +50,22 @@ const LeftColumn: FC<LeftColumnProps> = ({
           pagesAmount={pagesAmount}
         />
       </StyledLeftColumnHeader>
-      {data.map((item, index) => (
-        <LeftColumnItem
-          id={item.id}
-          item={item.label}
-          key={item.id}
-          rows={rows[index]}
-          onItemClick={onItemClick}
-        />
+      <Accordion type="single">
+        <AccordionItem value="items">
+          <AccordionTrigger>Phase</AccordionTrigger>
+          <AccordionContent>
+        {data.map((item, index) => (  
+            <LeftColumnItem
+              id={item.id}
+              item={item.label}
+              key={item.id}
+              rows={rows[index]}
+              onItemClick={onItemClick}
+            />
       ))}
+        </AccordionContent>
+      </AccordionItem>
+      </Accordion>
       <PaginationButton
         intent="next"
         $isVisible={pageNum !== pagesAmount - 1}

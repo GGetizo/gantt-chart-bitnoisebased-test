@@ -12,7 +12,7 @@ import Scheduler from "../components/shared/Scheduler/Scheduler";
 export default function Home() {
   const [values, setValues] = useState<ConfigFormValues>({
     peopleCount: 15,
-    projectsPerYear: 5,
+    projectsPerYear: 3,
     yearsCovered: 0,
     startDate: undefined,
     maxRecordsPerPage: 50,
@@ -58,7 +58,7 @@ export default function Home() {
     );
 
   return (
-    <div>
+    <div className="">
      <ConfigPanel values={values} onSubmit={setValues} />
       {isFullscreen ? (
         <Scheduler
