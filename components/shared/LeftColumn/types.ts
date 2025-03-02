@@ -1,7 +1,7 @@
-import { SchedulerData, SchedulerItemClickData } from "@/types/global";
+import { PaginatedSchedulerData, SchedulerItemClickData } from "@/types/global";
 
 export type LeftColumnProps = {
-  data: SchedulerData;
+  data: PaginatedSchedulerData;
   rows: number[];
   pageNum: number;
   pagesAmount: number;
