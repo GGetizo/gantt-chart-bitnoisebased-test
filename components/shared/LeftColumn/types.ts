@@ -13,5 +13,5 @@ export type LeftColumnProps = {
 };
 
 export type StyledInputWrapperProps = {
-  $isfocused: boolean;
+  isfocused: boolean;
 };

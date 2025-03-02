@@ -8,10 +8,10 @@ export type LeftColumnItemProps = {
 };
 
 export type StyledTextProps = {
-  isMain?: boolean;
+  $ismain: boolean;
 };
 
 export type StyledLeftColumnItemWrapperProps = {
   rows: number;
-  clickable: boolean;
+  $clickable: boolean;
 };
