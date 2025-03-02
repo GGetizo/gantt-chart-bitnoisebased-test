@@ -82,7 +82,7 @@ const Scheduler = ({
             onFilterData={onFilterData}
             onClearFilterData={onClearFilterData}>
             <StyledOutsideWrapper
-              $showScroll={!!data.length}
+              $showscroll={!!data.length}
               id={outsideWrapperId}
               ref={outsideWrapperRef}>
               <StyledInnerWrapper>

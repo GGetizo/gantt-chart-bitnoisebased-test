@@ -19,5 +19,5 @@ export type SchedulerProps = {
 };
 
 export type StyledOutsideWrapperProps = {
-  showScroll: boolean;
+  $showscroll: boolean;
 };

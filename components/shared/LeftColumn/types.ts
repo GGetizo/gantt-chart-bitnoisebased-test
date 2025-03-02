@@ -1,7 +1,7 @@
-import { PaginatedSchedulerData, SchedulerItemClickData } from "@/types/global";
+import { SchedulerData, SchedulerItemClickData } from "@/types/global";
 
 export type LeftColumnProps = {
-  data: PaginatedSchedulerData;
+  data: SchedulerData;
   rows: number[];
   pageNum: number;
   pagesAmount: number;
@@ -13,5 +13,5 @@ export type LeftColumnProps = {
 };
 
 export type StyledInputWrapperProps = {
-  isFocused: boolean;
+  $isfocused: boolean;
 };

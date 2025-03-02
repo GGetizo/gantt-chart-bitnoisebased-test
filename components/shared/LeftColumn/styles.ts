@@ -45,7 +45,7 @@ export const StyledInputWrapper = styled.div<StyledInputWrapperProps>`
   width: calc(100% - 20px); //20px = 10px margin each side
   background-color: ${({ theme }) => theme.colors.primary};
   border: 1px solid
-    ${({ theme, isFocused }) => (isFocused ? theme.colors.accent : theme.colors.border)};
+    ${({ theme, $isfocused }) => ($isfocused ? theme.colors.accent : theme.colors.border)};
   border-radius: 4px;
   display: flex;
   justify-content: space-between;
@@ -57,4 +57,14 @@ export const StyledInputWrapper = styled.div<StyledInputWrapperProps>`
     height: 24px;
     width: 24px;
   }
+`;
+
+export const StyledPhaseTitle = styled.h3`
+  font-size: 16px;
+  font-weight: bold;
+  color: ${({ theme }) => theme.colors.textPrimary};
+  margin: 10px 0;
+  padding: 8px;
+  background-color: ${({ theme }) => theme.colors.primary};
+  border-radius: 4px;
 `;
