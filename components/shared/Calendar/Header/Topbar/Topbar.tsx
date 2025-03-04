@@ -5,14 +5,11 @@ import * as React from "react"
 import { useTheme } from "styled-components";
 import { FC, MouseEventHandler } from "react";
 import { useState } from "react";
-import { Filter, X, MoveLeft, MoveRight } from 'lucide-react';
+import { Filter, X,} from 'lucide-react';
 import { useCalendar } from "@/context/CalendarProvider";
 import { useLanguage } from "@/context/LocaleProvider";
 import {
-  NavigationWrapper,
   Wrapper,
-  NavBtn,
-  Today,
   Filters,
 } from "./styles";
 import { TopbarProps } from "./types";
@@ -28,11 +25,7 @@ import { Label } from "@/components/ui/label";
 const Topbar: FC<TopbarProps> = ({ width}) => {
   const { topbar } = useLanguage();
   const {
-    data,
     config,
-    handleGoNext,
-    handleGoPrev,
-    handleGoToday,
     changeZoom,
     handleFilterData,
     onClearFilterData
@@ -110,17 +103,6 @@ const Topbar: FC<TopbarProps> = ({ width}) => {
         </Popover>
         )}
       </Filters>
-      <NavigationWrapper className="flex justify-center items-center text-center w-full">
-        <NavBtn disabled={!data?.length} onClick={handleGoPrev}>
-          <MoveLeft height="15" fill={colors.textPrimary} />
-          {topbar.prev}
-        </NavBtn>
-        <Today onClick={handleGoToday}>{topbar.today}</Today>
-        <NavBtn disabled={!data?.length} onClick={handleGoNext}>
-          {topbar.next}
-          <MoveRight height="15" fill={colors.textPrimary} />
-        </NavBtn>
-      </NavigationWrapper>
     </Wrapper>
   );
 };
