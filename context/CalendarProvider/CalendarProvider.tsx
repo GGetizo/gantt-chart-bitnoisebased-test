@@ -212,6 +212,7 @@ const CalendarProvider = ({
         handleGoToday,
         zoomIn,
         zoomOut,
+        changeZoom,
         zoom,
         isNextZoom,
         isPrevZoom,

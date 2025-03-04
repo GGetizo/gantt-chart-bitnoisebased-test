@@ -7,6 +7,7 @@ import {
   zoom2ColumnWidth
 } from "@/app/constants";
 
+
 export const getCols = (zoom: number) => {
   const wrapperWidth = document.getElementById(outsideWrapperId)?.clientWidth || 0;
   const componentWidth = wrapperWidth - leftColumnWidth;

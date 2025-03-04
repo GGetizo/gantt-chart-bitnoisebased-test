@@ -50,7 +50,7 @@ const LeftColumn: FC<LeftColumnProps> = ({
         </StyledInputWrapper>
         <PaginationButton
           intent="previous"
-          isvisible={pageNum !== 0}
+          $isvisible={pageNum !== 0}
           onClick={onLoadPrevious}
           icon={<ArrowUp width="16" height="16" />}
           pageNum={pageNum}
@@ -76,7 +76,7 @@ const LeftColumn: FC<LeftColumnProps> = ({
 
       <PaginationButton
         intent="next"
-        isvisible={pageNum !== pagesAmount - 1}
+        $isvisible={pageNum !== pagesAmount - 1}
         onClick={onLoadNext}
         icon={<ArrowDown width="16" height="16" />}
         pageNum={pageNum}

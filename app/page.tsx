@@ -5,11 +5,10 @@ import dayjs from "dayjs";
 import { createMockData } from "../mock/appMock";
 import { ParsedDatesRange } from "../utils/getDatesRange";
 import { ConfigFormValues, SchedulerProjectData } from "../types/global";
-import ConfigPanel from "../components/shared/ConfigPanel";
-import { StyledSchedulerFrame } from "./styles";
 import Scheduler from "../components/shared/Scheduler/Scheduler";
 
 export default function Home() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [values, setValues] = useState<ConfigFormValues>({
     peopleCount: 15,
     projectsPerYear: 3,
@@ -19,7 +18,7 @@ export default function Home() {
     isFullscreen: true
   });
 
-  const { peopleCount, projectsPerYear, yearsCovered, isFullscreen, maxRecordsPerPage } = values;
+  const { peopleCount, projectsPerYear, yearsCovered, maxRecordsPerPage } = values;
 
   const mocked = useMemo(
     () => createMockData(+peopleCount, +yearsCovered, +projectsPerYear),
@@ -59,8 +58,6 @@ export default function Home() {
 
   return (
     <div className="">
-     <ConfigPanel values={values} onSubmit={setValues} />
-      {isFullscreen ? (
         <Scheduler
           startDate={values.startDate ? new Date(values.startDate).toISOString() : undefined}
           onRangeChange={handleRangeChange}
@@ -71,19 +68,6 @@ export default function Home() {
           config={{ zoom: 0, maxRecordsPerPage: maxRecordsPerPage, showThemeToggle: true }}
           onItemClick={(data) => console.log("clicked: ", data)}
         />
-      ) : (
-        <StyledSchedulerFrame>
-          <Scheduler
-            startDate={values.startDate ? new Date(values.startDate).toISOString() : undefined}
-            onRangeChange={handleRangeChange}
-            isLoading={false}
-            data={filteredData}
-            onTileClick={handleTileClick}
-            onFilterData={handleFilterData}
-            onItemClick={(data) => console.log("clicked: ", data)}
-          />
-        </StyledSchedulerFrame>
-      )}
     </div>
   );
 }

@@ -17,7 +17,7 @@ export const StyledLeftColumnHeader = styled.div`
   padding-bottom: 4px;
   position: sticky;
   top: 0;
-  height: 124px;
+  height: 126px;
   display: flex;
   flex-direction: column;
   justify-content: end;
@@ -40,6 +40,7 @@ export const StyledInput = styled.input`
 `;
 
 export const StyledInputWrapper = styled.div<StyledInputWrapperProps>`
+  margin-bottom: 20px;
   margin-left: 10px;
   height: 36px;
   width: calc(100% - 20px); //20px = 10px margin each side
