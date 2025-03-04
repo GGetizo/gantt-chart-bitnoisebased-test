@@ -6,7 +6,6 @@ import { useTheme } from "styled-components";
 import { FC, MouseEventHandler } from "react";
 import { useState } from "react";
 import { Filter, X, MoveLeft, MoveRight } from 'lucide-react';
-import { CircleMinus as LucideCircleMinus, CirclePlus as LucideCirclePlus } from 'lucide-react';
 import { useCalendar } from "@/context/CalendarProvider";
 import { useLanguage } from "@/context/LocaleProvider";
 import {
@@ -14,9 +13,7 @@ import {
   Wrapper,
   NavBtn,
   Today,
-  Zoom,
   Filters,
-  OptionsContainer
 } from "./styles";
 import { TopbarProps } from "./types";
 import {
@@ -37,11 +34,7 @@ const Topbar: FC<TopbarProps> = ({ width}) => {
     handleGoNext,
     handleGoPrev,
     handleGoToday,
-    zoomIn,
-    zoomOut,
     changeZoom,
-    isNextZoom,
-    isPrevZoom,
     handleFilterData,
     onClearFilterData
   } = useCalendar();
@@ -52,28 +45,6 @@ const Topbar: FC<TopbarProps> = ({ width}) => {
     event.stopPropagation();
     onClearFilterData?.();
   };
-
-  interface DisabledIconProps {
-    isDisabled: boolean;
-    onClick?: () => void;
-    width: string;
-  }
-
-  const DisabledCircleMinus: FC<DisabledIconProps> = ({ isDisabled, onClick, width }) => (
-    <LucideCircleMinus
-      onClick={isDisabled ? undefined : onClick}
-      style={{ cursor: isDisabled ? "not-allowed" : "pointer", opacity: isDisabled ? 0.5 : 1 }}
-      width={width}
-    />
-  );
-
-  const DisabledCirclePlus: FC<DisabledIconProps> = ({ isDisabled, onClick, width }) => (
-    <LucideCirclePlus
-      onClick={isDisabled ? undefined : onClick}
-      style={{ cursor: isDisabled ? "not-allowed" : "pointer", opacity: isDisabled ? 0.5 : 1 }}
-      width={width}
-    />
-  );
 
   const [position, setPosition] = useState("Months");
   return (
@@ -140,7 +111,7 @@ const Topbar: FC<TopbarProps> = ({ width}) => {
         </Popover>
         )}
       </Filters>
-      <NavigationWrapper>
+      <NavigationWrapper className="flex justify-center items-center text-center w-full">
         <NavBtn disabled={!data?.length} onClick={handleGoPrev}>
           <MoveLeft height="15" fill={colors.textPrimary} />
           {topbar.prev}
@@ -151,21 +122,6 @@ const Topbar: FC<TopbarProps> = ({ width}) => {
           <MoveRight height="15" fill={colors.textPrimary} />
         </NavBtn>
       </NavigationWrapper>
-      <OptionsContainer>
-        <Zoom>
-          {topbar.view}
-          <DisabledCircleMinus
-            isDisabled={!isPrevZoom}
-            onClick={zoomOut}
-            width="14"
-          />
-          <DisabledCirclePlus
-            isDisabled={!isNextZoom}
-            onClick={zoomIn}
-            width="14"
-          />
-        </Zoom>
-      </OptionsContainer>
     </Wrapper>
   );
 };
