@@ -8,6 +8,5 @@ export { default as Loader } from "./Loader";
 export { default as Header } from "./Calendar/Header";
 export { default as Tile } from "./Tiles/Tile";
 export { default as Tiles } from "./Tiles";
-export { default as ConfigPanel } from "./ConfigPanel";
 export { default as Tooltip } from "./Tooltip";
 export { default as PaginationButton } from "./PaginationButton";
