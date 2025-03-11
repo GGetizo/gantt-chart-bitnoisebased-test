@@ -5,7 +5,7 @@ import * as React from "react"
 import { useTheme } from "styled-components";
 import { FC, MouseEventHandler } from "react";
 import { useState } from "react";
-import { Filter, X, MoveLeft, MoveRight } from 'lucide-react';
+import { Filter, X,} from 'lucide-react';
 import { useCalendar } from "@/context/CalendarProvider";
 import { useLanguage } from "@/context/LocaleProvider";
 import {
@@ -18,19 +18,14 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
-
-import { Separator } from "@radix-ui/react-dropdown-menu";
+import { Separator } from "@/components/ui/separator"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label";
 
 const Topbar: FC<TopbarProps> = ({ width}) => {
   const { topbar } = useLanguage();
   const {
-    data,
     config,
-    handleGoNext,
-    handleGoPrev,
-    handleGoToday,
     changeZoom,
     handleFilterData,
     onClearFilterData
