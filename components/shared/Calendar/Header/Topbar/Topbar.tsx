@@ -9,10 +9,7 @@ import { Filter, X, MoveLeft, MoveRight } from 'lucide-react';
 import { useCalendar } from "@/context/CalendarProvider";
 import { useLanguage } from "@/context/LocaleProvider";
 import {
-  NavigationWrapper,
   Wrapper,
-  NavBtn,
-  Today,
   Filters,
 } from "./styles";
 import { TopbarProps } from "./types";
@@ -111,17 +108,6 @@ const Topbar: FC<TopbarProps> = ({ width}) => {
         </Popover>
         )}
       </Filters>
-      <NavigationWrapper className="flex justify-center items-center text-center w-full">
-        <NavBtn disabled={!data?.length} onClick={handleGoPrev}>
-          <MoveLeft height="15" fill={colors.textPrimary} />
-          {topbar.prev}
-        </NavBtn>
-        <Today onClick={handleGoToday}>{topbar.today}</Today>
-        <NavBtn disabled={!data?.length} onClick={handleGoNext}>
-          {topbar.next}
-          <MoveRight height="15" fill={colors.textPrimary} />
-        </NavBtn>
-      </NavigationWrapper>
     </Wrapper>
   );
 };
