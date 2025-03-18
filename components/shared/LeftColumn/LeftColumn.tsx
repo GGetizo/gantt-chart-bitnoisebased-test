@@ -1,7 +1,6 @@
 import { FC, useState } from "react";
 import { useLanguage } from "@/context/LocaleProvider";
 import { ArrowDown, ArrowUp, Search } from "lucide-react";
-import PaginationButton from "../PaginationButton/PaginationButton";
 import { StyledInput, StyledInputWrapper, StyledLeftColumnHeader, StyledPhaseTitle, StyledWrapper } from "./styles";
 import { LeftColumnProps } from "./types";
 import LeftColumnItem from "./LeftColumnItem/LeftColumnItem";
@@ -48,14 +47,6 @@ const LeftColumn: FC<LeftColumnProps> = ({
           />
           <Search />
         </StyledInputWrapper>
-        <PaginationButton
-          intent="previous"
-          $isvisible={pageNum !== 0}
-          onClick={onLoadPrevious}
-          icon={<ArrowUp width="16" height="16" />}
-          pageNum={pageNum}
-          pagesAmount={pagesAmount}
-        />
       </StyledLeftColumnHeader>
 
       {/* Render Phases and their respective tasks */}
@@ -73,15 +64,6 @@ const LeftColumn: FC<LeftColumnProps> = ({
           ))}
         </div>
       ))}
-
-      <PaginationButton
-        intent="next"
-        $isvisible={pageNum !== pagesAmount - 1}
-        onClick={onLoadNext}
-        icon={<ArrowDown width="16" height="16" />}
-        pageNum={pageNum}
-        pagesAmount={pagesAmount}
-      />
     </StyledWrapper>
   );
 };
