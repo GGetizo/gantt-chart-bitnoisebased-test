@@ -71,12 +71,6 @@ export default function Home() {
         config={{ zoom: 0, maxRecordsPerPage: maxRecordsPerPage, showThemeToggle: true }}
         onItemClick={(data) => console.log("clicked: ", data)}
       />
-      {mocked.map(project => (
-        <div key={project.id}>
-          <h2>{project.projectID}</h2>
-          <TaskList tasks={project.data} />
-        </div>
-      ))}
       <TaskModal
         show={showModal}
         onHide={() => setShowModal(false)}
