@@ -8,19 +8,19 @@ import {
 } from "./styles";
 import { LeftColumnItemProps } from "./types";
 
-const LeftColumnItem: FC<LeftColumnItemProps> = ({ id, item, rows, onItemClick }) => {
+const LeftColumnItem: FC<LeftColumnItemProps> = ({ id, item, rows, onItemClick, projectID }) => {
   return (
     <StyledWrapper
       title={item.title + " | " + item.subtitle}
       $clickable={typeof onItemClick === "function"}
       rows={rows}
-      onClick={() => onItemClick?.({ id, label: item })}>
+      onClick={() => onItemClick?.({ id, label: item, projectID })}>
       <StyledInnerWrapper>
         <StyledImageWrapper>
         </StyledImageWrapper>
         <StyledTextWrapper>
-        <StyledText $ismain>{item.title}</StyledText>
-        <StyledText $ismain>{item.subtitle}</StyledText>
+          <StyledText $ismain>{item.title}</StyledText>
+          <StyledText $ismain>{item.subtitle}</StyledText>
         </StyledTextWrapper>
       </StyledInnerWrapper>
     </StyledWrapper>

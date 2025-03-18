@@ -37,8 +37,7 @@ const LeftColumn: FC<LeftColumnProps> = ({
 
   return (
     <StyledWrapper>
-      <StyledLeftColumnHeader>
-        <StyledInputWrapper $isfocused={isInputFocused}>
+        <StyledInputWrapper $isfocused={isInputFocused} className="mt-6">
           <StyledInput
             placeholder={search}
             value={searchInputValue}
@@ -48,15 +47,6 @@ const LeftColumn: FC<LeftColumnProps> = ({
           />
           <Search />
         </StyledInputWrapper>
-        <PaginationButton
-          intent="previous"
-          $isvisible={pageNum !== 0}
-          onClick={onLoadPrevious}
-          icon={<ArrowUp width="16" height="16" />}
-          pageNum={pageNum}
-          pagesAmount={pagesAmount}
-        />
-      </StyledLeftColumnHeader>
 
       {/* Render Phases and their respective tasks */}
       {[...phaseGroups.entries()].map(([phaseTitle, tasks]) => (
@@ -66,6 +56,7 @@ const LeftColumn: FC<LeftColumnProps> = ({
             <LeftColumnItem
               id={item.id}
               item={item.label}
+              projectID={item.projectID}
               key={item.id}
               rows={rows[index]}
               onItemClick={onItemClick}

@@ -3,13 +3,13 @@
 import { useCallback, useMemo, useState } from "react";
 import dayjs from "dayjs";
 import { createMockData } from "../mock/appMock";
-import { ParsedDatesRange } from "../utils/getDatesRange";
-import { ConfigFormValues, SchedulerProjectData } from "../types/global";
+import { ParsedDatesRange, SchedulerProjectData } from "../types/global";
 import Scheduler from "../components/shared/Scheduler/Scheduler";
+import TaskList from "../components/shared/TaskList/TaskList";
+import TaskModal from "../components/shared/TaskModal/TaskModal";
 
 export default function Home() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [values, setValues] = useState<ConfigFormValues>({
+  const [values, setValues] = useState({
     peopleCount: 15,
     projectsPerYear: 3,
     yearsCovered: 0,
@@ -25,7 +25,7 @@ export default function Home() {
     [peopleCount, projectsPerYear, yearsCovered]
   );
 
-  const [range, setRange] = useState<ParsedDatesRange>({
+  const [range, setRange] = useState({
     startDate: new Date(),
     endDate: new Date()
   });
@@ -51,23 +51,37 @@ export default function Home() {
 
   const handleFilterData = () => console.log(`Filters button was clicked.`);
 
-  const handleTileClick = (data: SchedulerProjectData) =>
-    console.log(
-      `Item ${data.title} - ${data.subtitle} was clicked. \n==============\nStart date: ${data.startDate} \n==============\nEnd date: ${data.endDate}\n==============\nOccupancy: ${data.occupancy}`
-    );
+  const [selectedTask, setSelectedTask] = useState<SchedulerProjectData | null>(null);
+  const [showModal, setShowModal] = useState(false);
+
+  const handleTileClick = (data: SchedulerProjectData) => {
+    setSelectedTask(data);
+    setShowModal(true);
+  };
 
   return (
-    <div className="">
-        <Scheduler
-          startDate={values.startDate ? new Date(values.startDate).toISOString() : undefined}
-          onRangeChange={handleRangeChange}
-          data={filteredData}
-          isLoading={false}
-          onTileClick={handleTileClick}
-          onFilterData={handleFilterData}
-          config={{ zoom: 0, maxRecordsPerPage: maxRecordsPerPage, showThemeToggle: true }}
-          onItemClick={(data) => console.log("clicked: ", data)}
-        />
+    <div>
+      <Scheduler
+        startDate={values.startDate ? new Date(values.startDate).toISOString() : undefined}
+        onRangeChange={handleRangeChange}
+        data={filteredData}
+        isLoading={false}
+        onTileClick={handleTileClick}
+        onFilterData={handleFilterData}
+        config={{ zoom: 0, maxRecordsPerPage: maxRecordsPerPage, showThemeToggle: true }}
+        onItemClick={(data) => console.log("clicked: ", data)}
+      />
+      {mocked.map(project => (
+        <div key={project.id}>
+          <h2>{project.projectID}</h2>
+          <TaskList tasks={project.data} />
+        </div>
+      ))}
+      <TaskModal
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        task={selectedTask}
+      />
     </div>
   );
 }

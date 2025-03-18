@@ -60,8 +60,14 @@ export type Theme = {
 
 export type SchedulerData = SchedulerRow[];
 
+export type ParsedDatesRange = {
+  startDate: Date;
+  endDate: Date;
+};
+
 export type SchedulerRow = {
   id: string;
+  projectID: string;
   label: SchedulerRowLabel;
   data: SchedulerProjectData[];
 };
@@ -72,6 +78,7 @@ export type PaginatedSchedulerData = PaginatedSchedulerRow[];
 
 export type PaginatedSchedulerRow = {
   id: string;
+  projectID: string;
   label: SchedulerRowLabel;
   data: SchedulerProjectData[][];
 };
